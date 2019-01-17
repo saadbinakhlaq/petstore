@@ -4,6 +4,7 @@ class ApplicationController < ActionController::API
   include Pundit
 
   rescue_from Pundit::NotAuthorizedError, with: :forbidden
+  rescue_from ActionController::ParameterMissing, with: :bad_request
 
   private
 
@@ -24,5 +25,9 @@ class ApplicationController < ActionController::API
 
   def forbidden
     render_error(['Forbidden'], :forbidden)
+  end
+
+  def bad_request
+    render_error(['Bad Request'], :bad_request)
   end
 end
