@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_17_204126) do
+ActiveRecord::Schema.define(version: 2019_01_17_212325) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,21 @@ ActiveRecord::Schema.define(version: 2019_01_17_204126) do
     t.datetime "updated_at", null: false
     t.index ["shelter_id"], name: "index_accounts_on_shelter_id"
     t.index ["user_id"], name: "index_accounts_on_user_id"
+  end
+
+  create_table "adoption_requests", force: :cascade do |t|
+    t.bigint "pet_id"
+    t.string "name"
+    t.string "email"
+    t.string "address"
+    t.string "city"
+    t.string "postcode"
+    t.string "phone_number"
+    t.bigint "shelter_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pet_id"], name: "index_adoption_requests_on_pet_id"
+    t.index ["shelter_id"], name: "index_adoption_requests_on_shelter_id"
   end
 
   create_table "pets", force: :cascade do |t|
@@ -57,5 +72,7 @@ ActiveRecord::Schema.define(version: 2019_01_17_204126) do
 
   add_foreign_key "accounts", "shelters"
   add_foreign_key "accounts", "users"
+  add_foreign_key "adoption_requests", "pets"
+  add_foreign_key "adoption_requests", "shelters"
   add_foreign_key "pets", "shelters"
 end

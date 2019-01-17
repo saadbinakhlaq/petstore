@@ -8,6 +8,21 @@ class PetsController < ApplicationController
     render json: @pets, root: 'pets', each_serializer: PetSerializer
   end
 
+  def create
+  end
+
+  def show
+  end
+
+  def set_adoptable
+  end
+
+  def delist
+  end
+
+  def adoption_request
+  end
+
   private
 
   def find_shelter

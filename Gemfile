@@ -12,6 +12,7 @@ gem 'simple_command'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'active_model_serializers'
 gem 'valid_email2'
+gem 'rack-cors', require: 'rack/cors'
 
 group :development, :test do
   gem 'pry-byebug'
