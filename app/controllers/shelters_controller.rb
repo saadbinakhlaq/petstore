@@ -13,7 +13,8 @@ class SheltersController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
+    render :head, status: :ok
   end
 
   private

@@ -5,6 +5,7 @@ class ApplicationController < ActionController::API
 
   rescue_from Pundit::NotAuthorizedError, with: :forbidden
   rescue_from ActionController::ParameterMissing, with: :bad_request
+  rescue_from ActionController::RoutingError, with: :not_found
 
   private
 
@@ -29,5 +30,9 @@ class ApplicationController < ActionController::API
 
   def bad_request
     render_error(['Bad Request'], :bad_request)
+  end
+
+  def not_found
+    render_error(['Resource Not Found'], :not_found)
   end
 end
