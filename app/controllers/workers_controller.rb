@@ -3,7 +3,13 @@ class WorkersController < ApplicationController
     worker = WorkerForm.new(worker_params)
 
     if worker.valid?
-      render :head, status: :created
+      render json: {
+        "worker": {
+          id: 1,
+          email: worker_params[:email],
+          address: worker_params[:address]
+        }
+      }, status: :created
     else
       render_error(worker.errors.messages, :unprocessable_entity)
     end

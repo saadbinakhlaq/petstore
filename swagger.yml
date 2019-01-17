@@ -3,7 +3,7 @@ info:
   description: "This is a sample server for Petstore."
   version: "1.0.0"
   title: "Swagger Petstore"
-host: "localhost:3000"
+host: "63548421.ngrok.io"
 basePath: "/v1.0.0"
 schemes:
 - "http"
@@ -36,6 +36,26 @@ paths:
           headers:
             Access-Control-Allow-Origin:
               type: "string"
+          schema:
+            type: "object"
+            properties:
+              shelter:
+                type: "object"
+                properties:
+                  id:
+                    type: "integer"
+                    format: "int64"
+                  name:
+                    type: "string"
+                  description:
+                    type: "string"
+                    example: "string"
+                  address:
+                    type: "string"
+                  city:
+                    type: "string"
+                  postcode:
+                    type: "string"
         400:
           description: "Bad Request"
           headers:
@@ -123,6 +143,31 @@ paths:
           headers:
             Access-Control-Allow-Origin:
               type: "string"
+          schema:
+            type: "object"
+            properties:
+              id:
+                type: integer
+                format: int64
+                example: 1
+              email:
+                type: "string"
+                example: "email@example.com"
+              first_name:
+                type: "string"
+                example: "David"
+              last_name:
+                type: "string"
+                example: "Smith"
+              address:
+                type: "string"
+                example: "rosa luxemburg 13"
+              city:
+                type: "string"
+                example: "Berlin"
+              postcode:
+                type: "string"
+                example: "12345"
         400:
           description: "Bad Request"
           headers:
@@ -229,7 +274,7 @@ paths:
             pet:
               type: object
               properties:
-                image:
+                image_link:
                   type: "string"
                   example: "http://s3.petstore_images.com/1"
                 medical_condition:
@@ -251,6 +296,31 @@ paths:
           headers:
             Access-Control-Allow-Origin:
               type: "string"
+          schema:
+            type: object
+            properties:
+              pet:
+                type: object
+                properties:
+                  id:
+                    type: "integer"
+                    format: "int64"
+                    example: 1
+                  image_link:
+                    type: "string"
+                    example: "http://s3.petstore_images.com/1"
+                  medical_condition:
+                    type: "string"
+                    example: "good health"
+                  race:
+                    type: "string"
+                    example: "cat"
+                  name:
+                    type: "string"
+                    example: "Milo"
+                  status:
+                    type: "string"
+                    example: "adoption_available"
         400:
           description: "Bad Request"
           headers:
@@ -331,7 +401,30 @@ paths:
             Access-Control-Allow-Origin:
               type: "string"
           schema:
-            $ref: "#/definitions/AdoptionRequest"
+            type: "object"
+            properties:
+              pet:
+                type: object
+                properties:
+                  id:
+                    type: "integer"
+                    format: "int64"
+                    example: 1
+                  image_link:
+                    type: "string"
+                    example: "http://s3.petstore_images.com/1"
+                  medical_condition:
+                    type: "string"
+                    example: "good health"
+                  race:
+                    type: "string"
+                    example: "cat"
+                  name:
+                    type: "string"
+                    example: "Milo"
+                  status:
+                    type: "string"
+                    example: "adoption_available"
         401:
           description: "Unauthorized"
           headers:
@@ -374,7 +467,30 @@ paths:
             Access-Control-Allow-Origin:
               type: "string"
           schema:
-            $ref: "#/definitions/AdoptionRequest"
+            type: "object"
+            properties:
+              pet:
+                type: object
+                properties:
+                  id:
+                    type: "integer"
+                    format: "int64"
+                    example: 1
+                  image_link:
+                    type: "string"
+                    example: "http://s3.petstore_images.com/1"
+                  medical_condition:
+                    type: "string"
+                    example: "good health"
+                  race:
+                    type: "string"
+                    example: "cat"
+                  name:
+                    type: "string"
+                    example: "Milo"
+                  status:
+                    type: "string"
+                    example: "unavailable"
         401:
           description: "Unauthorized"
           headers:
@@ -460,6 +576,9 @@ definitions:
         properties:
           name:
             type: "string"
+          description:
+            type: "string"
+            example: "string"
           address:
             type: "string"
           city:
@@ -504,7 +623,7 @@ definitions:
         type: "integer"
         format: "int64"
         example: 1
-      image:
+      image_link:
         type: "string"
         example: "http://s3.petstore_images.com/1"
       medical_condition:
