@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Shelter.all.map(&:delete)
+puts "Creating Shelter and Pets --->"
+shelter = FactoryBot.create(:shelter, :with_pets)
+
+puts "Shelter id: #{shelter.id}"
+puts "Done..."

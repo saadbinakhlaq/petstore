@@ -1,0 +1,558 @@
+swagger: "2.0"
+info:
+  description: "This is a sample server for Petstore."
+  version: "1.0.0"
+  title: "Swagger Petstore"
+host: "localhost:3000"
+basePath: "/v1.0.0"
+schemes:
+- "http"
+- "https"
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+paths:
+  /shelters:
+    post:
+      tags:
+      - "Shelters"
+      description: "Add a new shelter"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Shelter object that needs to be added to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/Shelter"
+      responses:
+        201:
+          description: "201 Created"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+        400:
+          description: "Bad Request"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+          schema:
+            $ref: "#/definitions/Error"
+        403:
+          description: "Forbidden"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+          schema:
+            $ref: "#/definitions/Error"
+        422:
+          description: "Unprocessable Entity"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+          schema:
+            $ref: "#/definitions/Error"
+  /shelters/{id}:
+    delete:
+      tags:
+      - "Shelters"
+      description: "Delete a shelter"
+      parameters:
+      - in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        200:
+          description: "200 OK"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+        401:
+          description: "Unauthorized"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+          schema:
+            $ref: "#/definitions/Error"
+        403:
+          description: "Forbidden"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+          schema:
+            $ref: "#/definitions/Error"
+  /shelters/{shelter_id}/workers:
+    post:
+      tags:
+      - "Workers"
+      description: "Add a new shelter"
+      parameters: 
+      - in: path
+        name: shelter_id
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Shelter ID of the shelter the worker belongs to"
+        required: true
+        schema:
+          $ref: "#/definitions/Worker"
+      responses:
+        201:
+          description: "201 Created"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+        400:
+          description: "Bad Request"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+          schema:
+            $ref: "#/definitions/Error"
+        403:
+          description: "Forbidden"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+          schema:
+            $ref: "#/definitions/Error"
+        422:
+          description: "Unprocessable Entity"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+          schema:
+            $ref: "#/definitions/Error"
+  /shelters/{shelter_id}/workers/{id}:
+    delete:
+      tags:
+      - "Workers"
+      description: "Delete a shelter"
+      parameters:
+      - in: path
+        name: id
+        required: true
+        type: string
+      - in: path
+        name: shelter_id
+        required: true
+        type: string
+      responses:
+        200:
+          description: "200 OK"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+        401:
+          description: "Unauthorized"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+          schema:
+            $ref: "#/definitions/Error"
+        403:
+          description: "Forbidden"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+          schema:
+            $ref: "#/definitions/Error"
+  /shelters/{shelter_id}/pets:
+    get:
+      tags:
+      - "Pets"
+      description: "List all the pets in the shelter"
+      parameters: 
+      - in: path
+        name: shelter_id
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 OK"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+          schema:
+            $ref: "#/definitions/Pets"
+    post:
+      tags:
+      - "Pets"
+      description: "Add a new pet"
+      parameters: 
+      - in: path
+        name: shelter_id
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Shelter ID of the shelter the worker belongs to"
+        required: true
+        schema:
+          type: object
+          properties:
+            pet:
+              type: object
+              properties:
+                image:
+                  type: "string"
+                  example: "http://s3.petstore_images.com/1"
+                medical_condition:
+                  type: "string"
+                  example: "good health"
+                race:
+                  type: "string"
+                  example: "cat"
+                name:
+                  type: "string"
+                  example: "Milo"
+                status:
+                  type: "string"
+                  example: "adoption_available"
+          
+      responses:
+        201:
+          description: "201 Created"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+        400:
+          description: "Bad Request"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+          schema:
+            $ref: "#/definitions/Error"
+        401:
+          description: "Unauthorized"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+          schema:
+            $ref: "#/definitions/Error"
+        403:
+          description: "Forbidden"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+          schema:
+            $ref: "#/definitions/Error"
+        422:
+          description: "Unprocessable Entity"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+          schema:
+            $ref: "#/definitions/Error"
+  /shelters/{shelter_id}/pets/{id}:
+    get:
+      tags:
+      - "Pets"
+      description: "Get details of a pet"
+      parameters: 
+      - in: path
+        name: shelter_id
+        required: true
+        type: "string"
+      - in: path
+        name: id
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 OK"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+          schema:
+            properties:
+              pet:
+                $ref: "#/definitions/Pet"
+        404:
+          description: "Not Found"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+          schema:
+            $ref: "#/definitions/Error"
+  /shelters/{shelter_id}/pets/{id}/set_adoptable:
+    post:
+      tags:
+      - "Pets"
+      description: "Make pet available for adoption"
+      parameters:
+      - in: path
+        name: shelter_id
+        required: true
+        type: "string"
+      - in: path
+        name: id
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 OK"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+          schema:
+            $ref: "#/definitions/AdoptionRequest"
+        401:
+          description: "Unauthorized"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+          schema:
+            $ref: "#/definitions/Error"
+        403:
+          description: "Forbidden"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+          schema:
+            $ref: "#/definitions/Error"
+  /shelters/{shelter_id}/pets/{id}/delist:
+    post:
+      tags:
+      - "Pets"
+      description: "Remove the pet from listing"
+      parameters:
+      - in: path
+        name: shelter_id
+        required: true
+        type: "string"
+      - in: path
+        name: id
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 OK"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+          schema:
+            $ref: "#/definitions/AdoptionRequest"
+        401:
+          description: "Unauthorized"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+          schema:
+            $ref: "#/definitions/Error"
+        403:
+          description: "Forbidden"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+          schema:
+            $ref: "#/definitions/Error"
+        404:
+          description: "Not Found"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+          schema:
+            $ref: "#/definitions/Error"
+  /shelters/{shelter_id}/pets/{pet_id}/adoption_request:
+    get:
+      tags:
+      - "Pets"
+      description: "Get the adoption request of a pet"
+      parameters:
+      - in: path
+        name: shelter_id
+        required: true
+        type: "string"
+      - in: path
+        name: pet_id
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 OK"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+          schema:
+            $ref: "#/definitions/AdoptionRequest"
+        404:
+          description: "Not Found"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+          schema:
+            $ref: "#/definitions/Error"
+    delete:
+      tags:
+      - "Pets"
+      description: "Delete adoption request of a pet"
+      parameters:
+      - in: path
+        name: shelter_id
+        required: true
+        type: "string"
+      - in: path
+        name: pet_id
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 OK"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+        404:
+          description: "Not Found"
+          headers:
+            Access-Control-Allow-Origin:
+              type: "string"
+          schema:
+            $ref: "#/definitions/Error"
+definitions:
+  Shelter:
+    type: "object"
+    properties:
+      shelter:
+        type: "object"
+        properties:
+          name:
+            type: "string"
+          address:
+            type: "string"
+          city:
+            type: "string"
+          postcode:
+            type: "string"
+  Worker:
+    type: "object"
+    properties:
+      worker:
+        type: "object"
+        properties:
+          email:
+            type: "string"
+            example: "email@example.com"
+          first_name:
+            type: "string"
+            example: "David"
+          last_name:
+            type: "string"
+            example: "Smith"
+          address:
+            type: "string"
+            example: "rosa luxemburg 13"
+          city:
+            type: "string"
+            example: "Berlin"
+          postcode:
+            type: "string"
+            example: "12345"
+  Pets:
+    type: "object"
+    properties:
+      pets:
+       type: "array"
+       items:
+        $ref: "#/definitions/Pet"
+  Pet:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+        example: 1
+      image:
+        type: "string"
+        example: "http://s3.petstore_images.com/1"
+      medical_condition:
+        type: "string"
+        example: "good health"
+      race:
+        type: "string"
+        example: "cat"
+      name:
+        type: "string"
+        example: "Milo"
+      status:
+        type: "string"
+        example: "adoption_available"
+  AdoptionRequest:
+    type: "object"
+    properties:
+      adoption_request:
+        type: object
+        properties:
+          id:
+            type: "integer"
+            format: "int64"
+            example: 1
+          name:
+            type: string
+            example: "Roy"
+          email:
+            type: string
+            example: "requester@example.com"
+          phone_number:
+            type: string
+            example: "+17661213123123"
+          address:
+            type: string
+            example: "Mitte 1"
+          city:
+            type: string
+            example: "Berlin"
+          postcode:
+            type: string
+            example: "12123"
+          state:
+            type: string
+            example: "pending"
+  Error:
+    type: "object"
+    properties:
+      errors:
+        items:
+          type: string
