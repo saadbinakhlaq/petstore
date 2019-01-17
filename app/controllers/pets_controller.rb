@@ -9,18 +9,28 @@ class PetsController < ApplicationController
   end
 
   def create
+    @pet = Pet.new(pet_params)
+
+    render :head, status: :created
   end
 
   def show
+    @pet = Pet.new(
+      name: Faker::Creature::Dog.name,
+      race: Faker::Creature::Dog.breed,
+      image: "http://cdn.com/1",
+      medical_condition: "Some condition" 
+    )
+
+    render json: @pet
   end
 
   def set_adoptable
+    render :head
   end
 
   def delist
-  end
-
-  def adoption_request
+    render :head
   end
 
   private
@@ -36,5 +46,14 @@ class PetsController < ApplicationController
   def authorized_user
     current_user.account.account_type == 'admin'||
     current_user.account.shelter.id == @shelter.id
+  end
+
+  def pet_params
+    params.require(:pet).permit(
+      :name,
+      :image,
+      :race,
+      :medical_condition
+    )
   end
 end

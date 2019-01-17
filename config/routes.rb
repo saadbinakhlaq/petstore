@@ -8,7 +8,7 @@ Rails.application.routes.draw do
           post :delist
         end
   
-        resource :adoption_request, only: [:show, :delete]
+        resource :adoption_request, only: [:show, :destroy]
       end
     end
   end

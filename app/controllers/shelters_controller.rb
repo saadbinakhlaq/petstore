@@ -5,7 +5,7 @@ class SheltersController < ApplicationController
 
     if @shelter.valid?
       @shelter.save!
-      render :head, status: :created
+      render json: @shelter, root: 'shelter', status: :created
     else
       render json: {
         errors: @shelter.errors.messages

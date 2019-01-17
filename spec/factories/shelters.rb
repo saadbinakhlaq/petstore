@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :shelter do
     name { Faker::Name.first_name }
-    desciption { "MyString" }
+    description { "MyString" }
     address { Faker::Address.full_address }
     org_type { 'shelter' }
 
