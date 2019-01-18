@@ -17,6 +17,6 @@ shelter_user = FactoryBot.create(:user)
 shelter_user.create_account(account_type: 'shelter', shelter: shelter)
 
 puts "Shelter id: #{shelter.id}"
-puts "Admin user token:#{admin_user.id}"
-puts "Shelter user token:#{shelter_user.id}"
+puts "Admin user token: #{admin_user.id}"
+puts "Shelter user token: #{shelter_user.id}"
 puts "Done..."
